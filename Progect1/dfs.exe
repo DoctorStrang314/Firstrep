@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+int calc(int num1,int num2,char oper) {
+    setlocale(0, "");
+    if (oper=='+') {
+        return num1 + num2;
+    }
+    else if (oper == '-') {
+        return num1 - num2;
+    }
+    else if (oper == '*') {
+        return num1 * num2;
+    }
+    else if (oper == '/'&& num2 !=0) {
+        return num1 / num2;
+    }
+    else if (oper == '%') {
+        return num1 % num2;
+    }
+    else if (oper == '?') {
+        cout<< " сколько будет "<< num1<< " + "<< num2<<" ?\n ";
+        return 0;
+    }
+    else if (oper == '^') {
+        for (int i = 0;i < num2;i++)
+        {
+            num1 = num1 * num1;
+        }
+        return num1;
+    }
+    else if (oper == '=') {
+        if (num1==num2) {
+            cout << "Числа "<<num1<< " и "<<num2<<" равны\n";
+            return 0;
+        }
+    }
+    else {
+        return 0;
+    }
+}
+
+int main()
+{
+    setlocale(0, "");
+    int num1, num2;
+    char oper;
+    cout << "Введите первое число ";
+    cin >> num1;
+    cout << "Введите второе число ";
+    cin >> num2;
+    cout << "Введите действие ";
+    cin >> oper;
+   
+    cout << calc(num1, num2, oper);
+    return  0;
+}
