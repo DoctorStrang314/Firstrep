@@ -13,6 +13,71 @@ short win = 2;
 short chois=0;//переменная для всех выборов
 short variable = 1;
 short gameMode = 1;
+short ColorX = 0;
+short ColorO = 0;
+short choseColor() {
+	system("cls");
+	int color = 0;
+		cout << "[1] - светло-серый" << endl;
+		cout<<"[2] - светло-серый"<<endl;
+		cout << "[3] - сервый"<<endl;
+		cout << "[4] - красный	"<<endl;
+		cout << "[5] - зеленый"<<endl;
+		cout << "[6] - желтый"<<endl;
+		cout<<"[7] - синий"<<endl;
+		cout<<"[8] - фиолетовый"<<endl;
+		cout<<"[9] - голубой "<<endl;
+		cout<<"[10] - белый	 "<<endl;
+		cin >> color;
+		switch (color)
+		{
+		case 1: {
+			return 89;
+		}
+			  break;
+		case 2: {
+			return 90;
+		}
+			  break;
+		case 3: {
+			return 91;
+		}
+			  break;
+		case 4: {
+			return 92;
+		}
+			  break;
+		case 5: {
+			return 93;
+		}
+			  break;
+		case 6: {
+			return 94;
+		}
+			  break;
+		case 7: {
+			return 95;
+		}
+			  break;
+		case 8: {
+			return 96;
+		}
+			  break;
+		case 9: {
+			return 97;
+		}
+			  break;
+		case 10: {
+			return 98;
+		}
+			  break;
+		
+
+		default:
+			return 0;
+			break;
+		}
+}
 void show() {
 	for (int i = 0; i < SIZE1; i++) {
 		for (int j = 0; j < SIZE1; j++) {
@@ -23,10 +88,10 @@ void show() {
 				cout << "# ";
 			}
 			else if (filde1[i][j] == 2) {
-				cout << "X ";
+				cout << "\x1b[" << ColorX << "mX\x1b[0m ";
 			}
 			else {
-				cout << "O ";
+				cout << "\x1b[" << ColorO << "mO\x1b[0m ";
 			}
 
 
@@ -44,10 +109,10 @@ void show2() {
 				cout << "# ";
 			}
 			else if (filde2[i][j] == 2) {
-				cout << "X ";
+				cout << "\x1b[" << ColorX << "mX\x1b[0m ";
 			}
 			else {
-				cout << "O ";
+				cout << "\x1b[" << ColorO << "mO\x1b[0m ";
 			}
 
 
@@ -65,10 +130,10 @@ void show3() {
 				cout << "# ";
 			}
 			else if (filde3[i][j] == 2) {
-				cout << "X ";
+				cout << "\x1b[" << ColorX << "mX\x1b[0m ";
 			}
 			else {
-				cout << "O ";
+				cout << "\x1b[" << ColorO << "mO\x1b[0m ";
 			}
 
 
@@ -490,20 +555,22 @@ void Settings() {
 	cout << "[1] Размер поля\n";
 	cout << "[2] Цвет\n";
 	cout << "[3] Режим игры\n";
-	cout << "[4] порядок ходов\n";
+	cout << "[4] Порядок ходов\n";
+	cout << "[5] Выход\n";
 	chois = 0;
-	while (chois < 1 || chois > 2)
+	while (chois < 1 || chois > 5)
 	{
 		cin >> chois;
 		switch (chois)
 		{ 
 			case 1: {
 				system("cls");
-				cout << "[1] поле 3х3\n";
-				cout << "[2] поле 5х5\n";
-				cout << "[3] поле 7х7\n";
+				cout << "[1] Поле 3х3\n";
+				cout << "[2] Поле 5х5\n";
+				cout << "[3] Поле 7х7\n";
+				cout << "[4] Выход\n";
 				chois = 0;
-				while (chois < 1 || chois > 3)
+				while (chois < 1 || chois > 4)
 				{
 
 					cin >> chois;
@@ -520,10 +587,15 @@ void Settings() {
 						case 3: {
 							variable = 3;
 						}
+						case 4: {
+							return;
+							system("cls");
+						}
 							  break;
 					default:
 						cout << "Этой команды нет в списке\n";
 						cout << "Введите команду: ";
+						chois = 0;
 						break;
 					}
 				}
@@ -531,15 +603,47 @@ void Settings() {
 			break;
 		
 			case 2: {
-				cout << "Скоро тут что-нибудь будет ";
+				system("cls");
+				cout <<"[1] Цвет крестика "<<endl;
+				cout << "[2] Цвет нолика " << endl;
+				cout << "[3] Выход" << endl;
+				chois = 0;
+				while (chois < 1 || chois > 3)
+				{
+
+					cin >> chois;
+					switch (chois)
+					{
+					case 1: {
+						ColorX=choseColor();
+					}
+						  break;
+					case 2: {
+						ColorO = choseColor();
+					}
+					case 3: {
+						return;
+						system("cls");
+					}
+						  break;
+
+					default:
+						cout << "Этой команды нет в списке\n";
+						cout << "Введите команду: ";
+						chois = 0;
+						break;
+					}
+				}
 			}
+
 			break;
 			case 3: {
 				system("cls");
 				cout << "[1] игра с компьютером "<<endl;
 				cout << "[2] игра с другим игроком" << endl;
+				cout << "[3] Выход" << endl;
 				chois = 0;
-				while (chois < 1 || chois > 2)
+				while (chois < 1 || chois > 3)
 				{
 
 					cin >> chois;
@@ -552,11 +656,16 @@ void Settings() {
 					case 2: {
 						gameMode = 2;
 					}
+					case 3: {
+						return;
+						system("cls");
+					}
 						  break;
 					
 					default:
 						cout << "Этой команды нет в списке\n";
 						cout << "Введите команду: ";
+						chois = 0;
 						break;
 					}
 				}
@@ -567,6 +676,7 @@ void Settings() {
 				cout << " Выберите порядок ходов"<<endl;
 				cout << "[1] первые крестики" << endl;
 				cout << "[2] первые нолики" << endl;
+				cout << "[3] Выход" << endl;
 				chois = 0;
 				while (chois < 1 || chois > 2)
 				{
@@ -582,19 +692,28 @@ void Settings() {
 						tern = 1;
 					}
 						  break;
-
+					case 3: {
+						return;
+						system("cls");
+					}
+						  break;
 					default:
 						cout << "Этой команды нет в списке\n";
 						cout << "Введите команду: ";
+						chois = 0;
 						break;
 					}
 				}
 			}
 				  break;
-
+			case 5:{
+				return;
+				system("cls");
+			}
 			default:
 				cout << "Этой команды нет в списке\n";
 				cout << "Введите команду: ";
+				chois = 0;
 				break;
 		}
 		system("cls");
@@ -603,8 +722,11 @@ void Settings() {
 	
 }
 void rule(){
-	cout << "Какой идиот не знает правил этой игры?";
-	cout << "Ты все знаешь вперед:)";
+	system("cls");
+	cout << "Какой идиот не знает правил этой игры?"<<endl;
+	cout << "Ты все знаешь вперед:)" << endl;
+	Sleep(3000);
+	system("cls");
 }
 int main()
 {
@@ -635,6 +757,7 @@ int main()
 						cout << "Нажмите любую кнопку" << endl;
 						cin >> contune;
 						system("cls");
+						
 					}
 					else if (win == 0) {
 						system("cls");
@@ -647,10 +770,13 @@ int main()
 				break;
 				case 2: {
 					Settings();
+					chois = 2;
+					system("cls");
 				}
 				break;
 				case 3: {
 					rule();
+					chois = 3;
 				}
 				 break;
 				case 4: {
@@ -661,6 +787,7 @@ int main()
 				default:
 				cout << "Этой команды нет в списке\n";
 				cout << "Введите команду: ";
+				chois = 0;
 				break;
 			}
 		}
